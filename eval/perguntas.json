@@ -1,0 +1,306 @@
+[
+ {
+  "id": 1,
+  "pergunta": "Qual o limite de alimentação por dia em viagem?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Limites",
+  "resposta_contem": "R$ 120,00",
+  "tipo": "direta"
+ },
+ {
+  "id": 2,
+  "pergunta": "Qual o valor máximo da diária de hospedagem em capitais?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Limites",
+  "resposta_contem": "R$ 380,00",
+  "tipo": "direta"
+ },
+ {
+  "id": 3,
+  "pergunta": "Quanto a empresa paga por km rodado com carro próprio?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Limites",
+  "resposta_contem": "R$ 1,10",
+  "tipo": "direta"
+ },
+ {
+  "id": 4,
+  "pergunta": "Qual o prazo para enviar o pedido de reembolso?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Prazo",
+  "resposta_contem": "30 dias",
+  "tipo": "direta"
+ },
+ {
+  "id": 5,
+  "pergunta": "Despesas acima de quanto precisam de aprovação da diretoria financeira?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Aprovação",
+  "resposta_contem": "R$ 2.000,00",
+  "tipo": "direta"
+ },
+ {
+  "id": 6,
+  "pergunta": "Multas de trânsito são reembolsadas?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "não é reembolsado",
+  "resposta_contem": "Multas",
+  "tipo": "direta"
+ },
+ {
+  "id": 7,
+  "pergunta": "Em quantos períodos as férias podem ser divididas?",
+  "doc": "ferias_e_ausencias.md",
+  "secao_contem": "Férias",
+  "resposta_contem": "três períodos",
+  "tipo": "direta"
+ },
+ {
+  "id": 8,
+  "pergunta": "Com quanta antecedência devo solicitar férias?",
+  "doc": "ferias_e_ausencias.md",
+  "secao_contem": "Férias",
+  "resposta_contem": "45 dias",
+  "tipo": "direta"
+ },
+ {
+  "id": 9,
+  "pergunta": "Quantos dias de licença-paternidade a empresa oferece?",
+  "doc": "ferias_e_ausencias.md",
+  "secao_contem": "Licenças",
+  "resposta_contem": "20 dias",
+  "tipo": "direta"
+ },
+ {
+  "id": 10,
+  "pergunta": "Qual o prazo para enviar atestado médico?",
+  "doc": "ferias_e_ausencias.md",
+  "secao_contem": "Atestados",
+  "resposta_contem": "48 horas",
+  "tipo": "direta"
+ },
+ {
+  "id": 11,
+  "pergunta": "Qual o tamanho mínimo da senha?",
+  "doc": "seguranca_da_informacao.md",
+  "secao_contem": "Senhas",
+  "resposta_contem": "12 caracteres",
+  "tipo": "direta"
+ },
+ {
+  "id": 12,
+  "pergunta": "Em quanto tempo devo comunicar um incidente de segurança?",
+  "doc": "seguranca_da_informacao.md",
+  "secao_contem": "Incidentes",
+  "resposta_contem": "1 hora",
+  "tipo": "direta"
+ },
+ {
+  "id": 13,
+  "pergunta": "A VPN é obrigatória em Wi-Fi público?",
+  "doc": "seguranca_da_informacao.md",
+  "secao_contem": "Trabalho remoto",
+  "resposta_contem": "VPN",
+  "tipo": "direta"
+ },
+ {
+  "id": 14,
+  "pergunta": "Quanto tempo dura o período de experiência?",
+  "doc": "onboarding.md",
+  "secao_contem": "experiência",
+  "resposta_contem": "90 dias",
+  "tipo": "direta"
+ },
+ {
+  "id": 15,
+  "pergunta": "Qual o valor do vale-refeição?",
+  "doc": "onboarding.md",
+  "secao_contem": "Benefícios",
+  "resposta_contem": "R$ 45,00",
+  "tipo": "direta"
+ },
+ {
+  "id": 16,
+  "pergunta": "Quais treinamentos são obrigatórios no primeiro mês?",
+  "doc": "onboarding.md",
+  "secao_contem": "Treinamentos",
+  "resposta_contem": "LGPD",
+  "tipo": "direta"
+ },
+ {
+  "id": 17,
+  "pergunta": "Qual o valor máximo de brinde que posso aceitar de fornecedor?",
+  "doc": "codigo_de_conduta.md",
+  "secao_contem": "Brindes",
+  "resposta_contem": "R$ 100,00",
+  "tipo": "direta"
+ },
+ {
+  "id": 18,
+  "pergunta": "Em quanto tempo o Comitê de Ética responde uma denúncia?",
+  "doc": "codigo_de_conduta.md",
+  "secao_contem": "denúncias",
+  "resposta_contem": "30 dias",
+  "tipo": "direta"
+ },
+ {
+  "id": 19,
+  "pergunta": "Qual o prazo de primeira resposta para chamado crítico?",
+  "doc": "faq_ti.md",
+  "secao_contem": "prazo de atendimento",
+  "resposta_contem": "30 minutos",
+  "tipo": "direta"
+ },
+ {
+  "id": 20,
+  "pergunta": "Como abro um chamado de suporte?",
+  "doc": "faq_ti.md",
+  "secao_contem": "chamado",
+  "resposta_contem": "portal de suporte",
+  "tipo": "direta"
+ },
+ {
+  "id": 21,
+  "pergunta": "Comprei um almoço numa viagem de trabalho, até quanto a empresa cobre?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Limites",
+  "resposta_contem": "R$ 120,00",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 22,
+  "pergunta": "Posso pegar Uber voltando tarde da noite de um evento da empresa?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Limites",
+  "resposta_contem": "22h",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 23,
+  "pergunta": "Perdi o comprovante com CNPJ de um café de R$ 30, ainda consigo ser ressarcido?",
+  "doc": "politica_reembolso.pdf",
+  "secao_contem": "Prazo",
+  "resposta_contem": "R$ 50,00",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 24,
+  "pergunta": "Ganho algum dia livre no mês em que faço anos?",
+  "doc": "ferias_e_ausencias.md",
+  "secao_contem": "aniversário",
+  "resposta_contem": "folga",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 25,
+  "pergunta": "Trabalhei além do horário, o que acontece com essas horas a mais?",
+  "doc": "ferias_e_ausencias.md",
+  "secao_contem": "Banco de horas",
+  "resposta_contem": "6 meses",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 26,
+  "pergunta": "Meu notebook foi roubado no ônibus, o que eu faço?",
+  "doc": "seguranca_da_informacao.md",
+  "secao_contem": "Incidentes",
+  "resposta_contem": "1 hora",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 27,
+  "pergunta": "Posso passar minha senha do sistema para um colega da minha equipe?",
+  "doc": "seguranca_da_informacao.md",
+  "secao_contem": "Senhas",
+  "resposta_contem": "cofre de senhas",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 28,
+  "pergunta": "Preciso colocar dados de clientes numa planilha, preciso de autorização de alguém?",
+  "doc": "seguranca_da_informacao.md",
+  "secao_contem": "Dados pessoais",
+  "resposta_contem": "DPO",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 29,
+  "pergunta": "Quem me acompanha nos primeiros meses depois que eu entro na empresa?",
+  "doc": "onboarding.md",
+  "secao_contem": "Primeira semana",
+  "resposta_contem": "padrinho",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 30,
+  "pergunta": "Quanto recebo de ajuda de custo para trabalhar de casa?",
+  "doc": "onboarding.md",
+  "secao_contem": "Benefícios",
+  "resposta_contem": "R$ 150,00",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 31,
+  "pergunta": "Meu irmão trabalha num fornecedor nosso, preciso avisar alguém?",
+  "doc": "codigo_de_conduta.md",
+  "secao_contem": "Conflito",
+  "resposta_contem": "15 dias",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 32,
+  "pergunta": "Quero instalar um programa que não está na lista, quanto tempo leva?",
+  "doc": "faq_ti.md",
+  "secao_contem": "instalar",
+  "resposta_contem": "5 dias úteis",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 33,
+  "pergunta": "Esqueci a senha e não estou com o celular do segundo fator, e agora?",
+  "doc": "faq_ti.md",
+  "secao_contem": "senha",
+  "resposta_contem": "vídeo",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 34,
+  "pergunta": "Dá pra ler o e-mail do trabalho no meu celular?",
+  "doc": "faq_ti.md",
+  "secao_contem": "celular pessoal",
+  "resposta_contem": "MDM",
+  "tipo": "parafrase"
+ },
+ {
+  "id": 35,
+  "pergunta": "Qual o valor do bônus anual por desempenho?",
+  "doc": null,
+  "secao_contem": null,
+  "resposta_contem": null,
+  "tipo": "sem_resposta"
+ },
+ {
+  "id": 36,
+  "pergunta": "A empresa oferece auxílio creche?",
+  "doc": null,
+  "secao_contem": null,
+  "resposta_contem": null,
+  "tipo": "sem_resposta"
+ },
+ {
+  "id": 37,
+  "pergunta": "Qual o horário de funcionamento do refeitório?",
+  "doc": null,
+  "secao_contem": null,
+  "resposta_contem": null,
+  "tipo": "sem_resposta"
+ },
+ {
+  "id": 38,
+  "pergunta": "Posso levar meu cachorro para o escritório?",
+  "doc": null,
+  "secao_contem": null,
+  "resposta_contem": null,
+  "tipo": "sem_resposta"
+ }
+]

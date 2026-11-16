@@ -1,0 +1,25 @@
+[build-system]
+requires = ["setuptools>=68"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "kassist"
+version = "0.1.0"
+description = "Assistente RAG sobre documentos internos com busca híbrida, citações verificadas e avaliação."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+dependencies = ["numpy>=1.26", "pypdf>=4", "python-docx>=1.1", "python-dotenv>=1.0", "google-genai>=1.0"]
+
+[project.optional-dependencies]
+ui = ["streamlit>=1.35"]
+dev = ["pytest>=8", "reportlab>=4"]
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+kassist = ["prompts/*.md"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
