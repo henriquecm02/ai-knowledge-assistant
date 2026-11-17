@@ -66,21 +66,31 @@ flowchart LR
 
 > Captura do modo busca (sem IA) para a paráfrase "meu notebook foi roubado no ônibus": o trecho correto ("Incidentes": comunicar em até 1 hora) aparece só em 4º. Esse é o caso que embeddings e reordenação devem resolver.
 
-### Respostas (Gemini real, amostra)
+### Respostas (Gemini real, 38 perguntas)
 
-`python eval/run_eval.py --llm --amostra`, modelo `gemini-3.5-flash-lite`, modo híbrido (o padrão do assistente). O plano gratuito permite ~20 chamadas por dia por modelo, então a avaliação roda numa **amostra fixa de 14 perguntas**: as 4 sem resposta, 6 paráfrases e 4 diretas (as primeiras de cada tipo). A medição completa de 38 perguntas e a variante com reordenação **não foram rodadas**.
+`python eval/run_eval.py --llm --rerank`, modelo `gemini-3.5-flash-lite`, 16/11/2026. Cada pergunta conta como correta se a resposta **contém o fato esperado e cita o trecho certo** (ou, nas sem resposta, se o assistente **se abstém**). Respostas completas em [`eval/resultados/respostas_gemini-3.5-flash-lite.json`](eval/resultados/).
 
-| Tipo | Perguntas | Acerto | Critério |
+| Tipo | Perguntas | Híbrido | Híbrido + reordenação |
 |---|---|---|---|
-| Diretas | 4 | 4/4 | contém o fato esperado **e** cita o trecho correto |
-| Paráfrases | 6 | 5/6 | idem |
-| Sem resposta | 4 | 4/4 | abstém-se (nenhuma resposta inventada) |
+| Diretas | 20 | 20/20 | 20/20 |
+| Paráfrases | 14 | 13/14 | **14/14** |
+| Sem resposta (deve se abster) | 4 | 4/4 | 4/4 |
+| **Total** | **38** | **37/38** | **38/38** |
 
-14 chamadas ao modelo, 1 por pergunta; mediana de ~1,5 s por resposta.
+| Custo medido | Híbrido | Híbrido + reordenação |
+|---|---|---|
+| Chamadas ao modelo (38 perguntas) | 38 | 72 (média de 1,9 por pergunta) |
+| Tempo por resposta, mediana · p90 | 1,4 s · 8,9 s | 4,0 s · 23,7 s |
 
-**O único erro (pergunta 22, "posso pegar Uber voltando tarde?")** é de recuperação, não de geração: o híbrido trouxe o trecho errado em primeiro lugar, o assistente não achou o limite de 22h e respondeu que a informação não está nos documentos. Falhou do jeito seguro (sem inventar), mas falhou. As perguntas 21 e 26, que o híbrido também errou no primeiro lugar, foram respondidas certo porque o trecho correto estava entre os 5 recuperados.
+**O único erro do híbrido** é a pergunta 22 ("posso pegar Uber voltando tarde da noite de um evento?"). É falha de **recuperação**, não de geração: o BM25 puxou o trecho errado ("Redes sociais") para o primeiro lugar, o assistente não achou o limite de 22h e respondeu que a informação não está nos documentos. Falhou do jeito seguro, sem inventar. A reordenação por LLM corrigiu esse caso e foi o único que mudou entre os dois modos.
 
-Limites: 14 perguntas, um modelo, uma rodada, base fictícia escrita por mim. Mostra o fluxo completo funcionando com o Gemini real; não é uma medida de acurácia.
+**Nas 4 perguntas sem resposta**, os dois modos se abstiveram, e com a reordenação o assistente chegou a recusar sem gerar resposta ("nenhum trecho recuperado"), o que também poupa uma chamada.
+
+**Leitura honesta do resultado:**
+
+- A reordenação **acerta 1 pergunta a mais (de 38) ao custo de quase dobrar as chamadas e triplicar a latência mediana**. Com uma diferença de uma pergunta, não dá para afirmar que compensa; o dado diz que ela corrige falhas de recuperação do BM25 e que isso não é de graça.
+- Como o **denso sozinho** já acerta 14/14 das paráfrases na recuperação, é plausível que um modo denso resolvesse o caso sem o custo do reranker, mas **não medi as respostas no modo denso**. Está no roadmap.
+- 38 perguntas escritas por mim sobre uma base fictícia de 34 trechos, um modelo, uma rodada, saída não determinística. Mostra o fluxo completo funcionando e onde ele falha; não é uma medida de acurácia em produção.
 
 ## Status da validação
 
@@ -91,8 +101,8 @@ Limites: 14 perguntas, um modelo, uma rodada, base fictícia escrita por mim. Mo
 | Garantias de citação e abstenção | ✅ testado com LLM roteirizado (11 testes) |
 | Modo busca na interface (sem chave) | ✅ executado |
 | Embeddings, busca densa e híbrida com o **Gemini real** | ✅ medido nas 38 perguntas |
-| Respostas do Gemini | ✅ amostra de 14 perguntas (13/14); veja acima |
-| Reordenação (rerank) e respostas nas 38 perguntas | ⏳ **pendente**: exige mais chamadas do que a cota gratuita diária permite |
+| Respostas do Gemini, com e sem reordenação | ✅ 38 perguntas: híbrido 37/38, com reordenação 38/38; veja acima |
+| Respostas no modo denso e comparação entre modelos | ⏳ **pendente** |
 
 ## Como rodar
 
@@ -115,8 +125,8 @@ Para usar com os seus documentos, envie os arquivos pela barra lateral da interf
 
 ## Roadmap
 
-- [ ] Rodar as respostas nas 38 perguntas e com reordenação (`--rerank`), em vários dias ou com plano pago
-- [ ] Reavaliar denso × híbrido numa base maior, antes de decidir o modo padrão
+- [ ] Medir as respostas no modo denso e comparar modelos
+- [ ] Reavaliar denso × híbrido × reordenação numa base maior, antes de decidir o modo padrão
 - [ ] Comparação entre documentos ("o que mudou da versão 3.1 para a 3.2?")
 - [ ] Persistir índice e embeddings (SQLite) para bases maiores
 - [ ] Feedback 👍/👎 na interface para alimentar o conjunto de avaliação

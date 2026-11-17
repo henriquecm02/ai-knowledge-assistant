@@ -4,6 +4,10 @@
   python eval/run_eval.py --llm           # + denso, híbrido, reranking e respostas (exige GEMINI_API_KEY)
   python eval/run_eval.py --embeddings    # só recuperação densa/híbrida (usa embeddings, sem geração)
   python eval/run_eval.py --llm --amostra # respostas só numa amostra fixa (poupa a cota gratuita)
+  python eval/run_eval.py --llm --rerank  # 38 perguntas, com e sem reordenação; RETOMÁVEL (veja abaixo)
+
+Retomável: cada resposta é guardada em eval/resultados/respostas_<modelo>.json. Ao esgotar a cota diária o script
+salva o que fez e para; rodar de novo no dia seguinte continua de onde parou, sempre com o MESMO modelo.
 
 Métricas
   Recuperação: Recall@1/3/5 e MRR do trecho correto (documento + seção), por tipo de pergunta.
@@ -59,28 +63,41 @@ SAMPLE = ([q for q in QUESTIONS if q["tipo"] == "sem_resposta"] + [q for q in QU
           + [q for q in QUESTIONS if q["tipo"] == "direta"][:4])
 
 
-def eval_answers(assistant: Assistant, questions: list[dict] | None = None) -> dict:
-    rows = []
-    for q in (questions or QUESTIONS):
+def eval_answers(assistant: Assistant, questions: list[dict] | None = None, cache: dict | None = None,
+                 save=lambda: None) -> dict:
+    """Responde as perguntas ainda sem resultado em `cache` (id -> linha). Para sem erro ao esgotar a cota."""
+    from kassist.llm import QuotaExceeded
+    cache = {} if cache is None else cache
+    qs = questions or QUESTIONS
+    for q in qs:
+        if str(q["id"]) in cache:
+            continue
         t0 = time.perf_counter()
-        a = assistant.ask(q["pergunta"])
+        try:
+            a = assistant.ask(q["pergunta"])
+        except QuotaExceeded as e:
+            print(f"  ⏸ cota esgotada em {q['id']}; {len(cache)}/{len(qs)} respondidas. Retome depois. ({str(e)[:80]})")
+            break
         secs = time.perf_counter() - t0
         if q["tipo"] == "sem_resposta":
-            ok = not a.encontrou
-            row = {"id": q["id"], "tipo": q["tipo"], "absteve": not a.encontrou, "correta": ok}
+            row = {"id": q["id"], "tipo": q["tipo"], "absteve": not a.encontrou, "correta": not a.encontrou}
         else:
             fact = fold(q["resposta_contem"]) in fold(a.resposta)
             cites_gold = any(s["citacao"].startswith(q["doc"]) and q["secao_contem"].lower() in s["citacao"].lower()
                              for s in a.fontes)
             row = {"id": q["id"], "tipo": q["tipo"], "fato_correto": fact, "cita_trecho_correto": cites_gold,
                    "correta": fact and cites_gold}
-        rows.append({**row, "segundos": round(secs, 2), "chamadas_llm": a.usage.calls, "resposta": a.resposta,
-                     "avisos": a.avisos})
+        cache[str(q["id"])] = {**row, "segundos": round(secs, 2), "chamadas_llm": a.usage.calls, "resposta": a.resposta,
+                               "avisos": a.avisos}
+        save()
+    rows = [cache[str(q["id"])] for q in qs if str(q["id"]) in cache]
     agg = {}
     for tipo in ("direta", "parafrase", "sem_resposta"):
         sub = [r for r in rows if r["tipo"] == tipo]
-        agg[tipo] = {"n": len(sub), "acerto": round(sum(r["correta"] for r in sub) / len(sub), 3)}
-    return {"por_tipo": agg, "linhas": rows}
+        total = len([q for q in qs if q["tipo"] == tipo])
+        agg[tipo] = {"n": len(sub), "de": total,
+                     "acerto": round(sum(r["correta"] for r in sub) / len(sub), 3) if sub else None}
+    return {"por_tipo": agg, "linhas": rows, "completo": len(rows) == len(qs)}
 
 
 def main() -> None:
@@ -111,10 +128,17 @@ def main() -> None:
             llm = GeminiLLM(key, os.getenv("GEMINI_MODEL", "gemini-3.8-flash"))
             report["modelo"] = llm.model
             qs = SAMPLE if args.amostra else None
+            cache_file = ROOT / "eval" / "resultados" / f"respostas_{llm.model}.json"
+            store = json.loads(cache_file.read_text(encoding="utf-8")) if cache_file.exists() else {}
+
+            def save():
+                cache_file.write_text(json.dumps(store, ensure_ascii=False, indent=2), encoding="utf-8")
+            modos = [("hibrido", False)] + ([("hibrido+rerank", True)] if args.rerank else [])
+            report["respostas"] = {}
+            for nome, rr in modos:
+                report["respostas"][nome] = eval_answers(Assistant(index, llm, rerank=rr), qs,
+                                                         store.setdefault(nome, {}), save)
             report["amostra_respostas"] = len(qs) if qs else len(QUESTIONS)
-            report["respostas"] = {"hibrido": eval_answers(Assistant(index, llm), qs)}
-            if args.rerank:
-                report["respostas"]["hibrido+rerank"] = eval_answers(Assistant(index, llm, rerank=True), qs)
 
     out = ROOT / "eval" / "resultados"
     out.mkdir(exist_ok=True)
@@ -127,7 +151,7 @@ def main() -> None:
             print(f"| {mode} | {tipo} ({m['n']}) | {m['recall@1']:.2f} | {m['recall@3']:.2f} | {m['recall@5']:.2f} "
                   f"| {m['mrr']:.2f} |")
     for name, res in report.get("respostas", {}).items():
-        print(name, {k: v["acerto"] for k, v in res["por_tipo"].items()})
+        print(name, {k: f"{v['acerto']} ({v['n']}/{v['de']})" for k, v in res["por_tipo"].items()})
 
 
 if __name__ == "__main__":
