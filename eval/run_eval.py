@@ -2,6 +2,8 @@
 
   python eval/run_eval.py                 # BM25: roda sem chave
   python eval/run_eval.py --llm           # + denso, híbrido, reranking e respostas (exige GEMINI_API_KEY)
+  python eval/run_eval.py --embeddings    # só recuperação densa/híbrida (usa embeddings, sem geração)
+  python eval/run_eval.py --llm --amostra # respostas só numa amostra fixa (poupa a cota gratuita)
 
 Métricas
   Recuperação: Recall@1/3/5 e MRR do trecho correto (documento + seção), por tipo de pergunta.
@@ -52,9 +54,14 @@ def eval_retrieval(index: Index, mode: str) -> dict:
     return out
 
 
-def eval_answers(assistant: Assistant) -> dict:
+# Amostra fixa para caber na cota gratuita: as 4 sem resposta + 6 paráfrases + 4 diretas (as primeiras de cada tipo).
+SAMPLE = ([q for q in QUESTIONS if q["tipo"] == "sem_resposta"] + [q for q in QUESTIONS if q["tipo"] == "parafrase"][:6]
+          + [q for q in QUESTIONS if q["tipo"] == "direta"][:4])
+
+
+def eval_answers(assistant: Assistant, questions: list[dict] | None = None) -> dict:
     rows = []
-    for q in QUESTIONS:
+    for q in (questions or QUESTIONS):
         t0 = time.perf_counter()
         a = assistant.ask(q["pergunta"])
         secs = time.perf_counter() - t0
@@ -79,13 +86,16 @@ def eval_answers(assistant: Assistant) -> dict:
 def main() -> None:
     ap = argparse.ArgumentParser()
     ap.add_argument("--llm", action="store_true")
+    ap.add_argument("--embeddings", action="store_true", help="só recuperação com embeddings, sem gerar respostas")
+    ap.add_argument("--amostra", action="store_true", help="respostas apenas na amostra fixa de 14 perguntas")
+    ap.add_argument("--rerank", action="store_true", help="também avalia híbrido+reordenação (dobra as chamadas)")
     args = ap.parse_args()
     chunks = load_corpus(ROOT / "corpus")
     report: dict = {"data": datetime.now().isoformat(timespec="seconds"), "trechos": len(chunks),
                     "perguntas": len(QUESTIONS), "recuperacao": {}}
     report["recuperacao"]["bm25"] = eval_retrieval(Index(chunks), "bm25")
 
-    if args.llm:
+    if args.llm or args.embeddings:
         load_dotenv(ROOT / ".env")
         load_dotenv(Path.home() / ".config" / "portfolio" / ".env")
         key = os.environ.get("GEMINI_API_KEY")
@@ -97,15 +107,19 @@ def main() -> None:
         report["embedder"] = index.embedder.name
         for mode in ("denso", "hibrido"):
             report["recuperacao"][mode] = eval_retrieval(index, mode)
-        llm = GeminiLLM(key, os.getenv("GEMINI_MODEL", "gemini-3.8-flash"))
-        report["modelo"] = llm.model
-        report["respostas"] = {"hibrido": eval_answers(Assistant(index, llm)),
-                               "hibrido+rerank": eval_answers(Assistant(index, llm, rerank=True))}
+        if args.llm:
+            llm = GeminiLLM(key, os.getenv("GEMINI_MODEL", "gemini-3.8-flash"))
+            report["modelo"] = llm.model
+            qs = SAMPLE if args.amostra else None
+            report["amostra_respostas"] = len(qs) if qs else len(QUESTIONS)
+            report["respostas"] = {"hibrido": eval_answers(Assistant(index, llm), qs)}
+            if args.rerank:
+                report["respostas"]["hibrido+rerank"] = eval_answers(Assistant(index, llm, rerank=True), qs)
 
     out = ROOT / "eval" / "resultados"
     out.mkdir(exist_ok=True)
     stamp = datetime.now().strftime("%Y%m%d-%H%M")
-    (out / f"{stamp}{'_llm' if args.llm else '_bm25'}.json").write_text(
+    (out / f"{stamp}{'_llm' if args.llm else '_emb' if args.embeddings else '_bm25'}.json").write_text(
         json.dumps(report, ensure_ascii=False, indent=2), encoding="utf-8")
     print(f"| Modo | Tipo | R@1 | R@3 | R@5 | MRR |\n|---|---|---|---|---|---|")
     for mode, r in report["recuperacao"].items():

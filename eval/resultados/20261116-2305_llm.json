@@ -1,0 +1,276 @@
+{
+  "data": "2026-11-16T23:04:29",
+  "trechos": 34,
+  "perguntas": 38,
+  "recuperacao": {
+    "bm25": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 0.643,
+        "recall@3": 0.786,
+        "recall@5": 0.857,
+        "mrr": 0.732,
+        "erros_top1": [
+          {
+            "id": 21,
+            "pergunta": "Comprei um almoço numa viagem de trabalho, até quanto a empresa cobre?",
+            "top1": "politica_reembolso.pdf · 1. O que pode ser reembolsado · p. 1"
+          },
+          {
+            "id": 22,
+            "pergunta": "Posso pegar Uber voltando tarde da noite de um evento da empresa?",
+            "top1": "faq_ti.md · Introdução"
+          },
+          {
+            "id": 24,
+            "pergunta": "Ganho algum dia livre no mês em que faço anos?",
+            "top1": "onboarding.md · Benefícios"
+          },
+          {
+            "id": 26,
+            "pergunta": "Meu notebook foi roubado no ônibus, o que eu faço?",
+            "top1": "seguranca_da_informacao.md · Dispositivos"
+          },
+          {
+            "id": 30,
+            "pergunta": "Quanto recebo de ajuda de custo para trabalhar de casa?",
+            "top1": null
+          }
+        ]
+      }
+    },
+    "denso": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      }
+    },
+    "hibrido": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 0.786,
+        "recall@3": 0.929,
+        "recall@5": 0.929,
+        "mrr": 0.857,
+        "erros_top1": [
+          {
+            "id": 21,
+            "pergunta": "Comprei um almoço numa viagem de trabalho, até quanto a empresa cobre?",
+            "top1": "politica_reembolso.pdf · 1. O que pode ser reembolsado · p. 1"
+          },
+          {
+            "id": 22,
+            "pergunta": "Posso pegar Uber voltando tarde da noite de um evento da empresa?",
+            "top1": "codigo_de_conduta.md · Redes sociais"
+          },
+          {
+            "id": 26,
+            "pergunta": "Meu notebook foi roubado no ônibus, o que eu faço?",
+            "top1": "seguranca_da_informacao.md · Dispositivos"
+          }
+        ]
+      }
+    }
+  },
+  "embedder": "gemini-embedding-001",
+  "modelo": "gemini-3.5-flash-lite",
+  "amostra_respostas": 14,
+  "respostas": {
+    "hibrido": {
+      "por_tipo": {
+        "direta": {
+          "n": 4,
+          "acerto": 1.0
+        },
+        "parafrase": {
+          "n": 6,
+          "acerto": 0.833
+        },
+        "sem_resposta": {
+          "n": 4,
+          "acerto": 1.0
+        }
+      },
+      "linhas": [
+        {
+          "id": 35,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.47,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre o valor do bônus anual por desempenho não está nos documentos disponíveis. Sugerimos verificar com o setor de Recursos Humanos.",
+          "avisos": []
+        },
+        {
+          "id": 36,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.13,
+          "chamadas_llm": 1,
+          "resposta": "Não. A informação sobre a oferta de auxílio creche não está nos documentos disponíveis.",
+          "avisos": []
+        },
+        {
+          "id": 37,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.26,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre o horário de funcionamento do refeitório não está nos documentos disponíveis. Sugerimos verificar com a área responsável pelos benefícios.",
+          "avisos": []
+        },
+        {
+          "id": 38,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 7.43,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre levar animais de estimação para o escritório não está nos documentos disponíveis. Sugerimos consultar a área responsável.",
+          "avisos": []
+        },
+        {
+          "id": 21,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.74,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a empresa cobre despesas de alimentação em viagem até R$ 120,00 por dia, sem bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 22,
+          "tipo": "parafrase",
+          "fato_correto": false,
+          "cita_trecho_correto": false,
+          "correta": false,
+          "segundos": 0.86,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre o uso de Uber voltando tarde da noite de um evento não está nos documentos disponíveis. Sugerimos consultar a área responsável.",
+          "avisos": []
+        },
+        {
+          "id": 23,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.94,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você ainda consegue ser ressarcido. Cupom sem CNPJ é aceito para despesas de até R$ 50,00.",
+          "avisos": []
+        },
+        {
+          "id": 24,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 7.63,
+          "chamadas_llm": 1,
+          "resposta": "Sim, toda pessoa colaboradora tem direito a uma folga no mês do seu aniversário, que deve ser combinada com o gestor e não é cumulativa.",
+          "avisos": []
+        },
+        {
+          "id": 25,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.83,
+          "chamadas_llm": 1,
+          "resposta": "Sim, as horas a mais entram no banco de horas e devem ser compensadas em até 6 meses. Se houver saldo positivo não compensado nesse prazo, o valor é pago como hora extra com adicional de 50%.",
+          "avisos": []
+        },
+        {
+          "id": 26,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.62,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você deve comunicar a perda ao canal #seguranca ou ao e-mail seguranca@ateliehorizonte.invalid em até 1 hora após a descoberta. Não tente investigar sozinho nem apagar evidências.",
+          "avisos": []
+        },
+        {
+          "id": 1,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.67,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o limite de alimentação em viagem é de até R$ 120,00 por dia, sem bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 2,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.53,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o valor máximo é de até R$ 380,00 por diária. Esse limite se aplica especificamente a hospedagens realizadas em capitais.",
+          "avisos": []
+        },
+        {
+          "id": 3,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.97,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a empresa paga R$ 1,10 por km rodado com carro próprio, desde que o trajeto seja informado no mapa.",
+          "avisos": []
+        },
+        {
+          "id": 4,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.22,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o pedido de reembolso deve ser enviado pelo sistema Despesas em até 30 dias corridos após a despesa.",
+          "avisos": []
+        }
+      ]
+    }
+  }
+}

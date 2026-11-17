@@ -1,0 +1,104 @@
+{
+  "data": "2026-11-16T23:03:39",
+  "trechos": 34,
+  "perguntas": 38,
+  "recuperacao": {
+    "bm25": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 0.643,
+        "recall@3": 0.786,
+        "recall@5": 0.857,
+        "mrr": 0.732,
+        "erros_top1": [
+          {
+            "id": 21,
+            "pergunta": "Comprei um almoço numa viagem de trabalho, até quanto a empresa cobre?",
+            "top1": "politica_reembolso.pdf · 1. O que pode ser reembolsado · p. 1"
+          },
+          {
+            "id": 22,
+            "pergunta": "Posso pegar Uber voltando tarde da noite de um evento da empresa?",
+            "top1": "faq_ti.md · Introdução"
+          },
+          {
+            "id": 24,
+            "pergunta": "Ganho algum dia livre no mês em que faço anos?",
+            "top1": "onboarding.md · Benefícios"
+          },
+          {
+            "id": 26,
+            "pergunta": "Meu notebook foi roubado no ônibus, o que eu faço?",
+            "top1": "seguranca_da_informacao.md · Dispositivos"
+          },
+          {
+            "id": 30,
+            "pergunta": "Quanto recebo de ajuda de custo para trabalhar de casa?",
+            "top1": null
+          }
+        ]
+      }
+    },
+    "denso": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      }
+    },
+    "hibrido": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 0.786,
+        "recall@3": 0.929,
+        "recall@5": 0.929,
+        "mrr": 0.857,
+        "erros_top1": [
+          {
+            "id": 21,
+            "pergunta": "Comprei um almoço numa viagem de trabalho, até quanto a empresa cobre?",
+            "top1": "politica_reembolso.pdf · 1. O que pode ser reembolsado · p. 1"
+          },
+          {
+            "id": 22,
+            "pergunta": "Posso pegar Uber voltando tarde da noite de um evento da empresa?",
+            "top1": "codigo_de_conduta.md · Redes sociais"
+          },
+          {
+            "id": 26,
+            "pergunta": "Meu notebook foi roubado no ônibus, o que eu faço?",
+            "top1": "seguranca_da_informacao.md · Dispositivos"
+          }
+        ]
+      }
+    }
+  },
+  "embedder": "gemini-embedding-001"
+}

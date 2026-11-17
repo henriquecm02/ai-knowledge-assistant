@@ -67,19 +67,40 @@ class Embedder(Protocol):
 
 
 class GeminiEmbedder:
-    def __init__(self, api_key: str, model: str = "gemini-embedding-001", batch: int = 50):
+    """Embeddings do Gemini com cache por texto e espera quando o limite por minuto da cota gratuita estoura."""
+
+    def __init__(self, api_key: str, model: str = "gemini-embedding-001", batch: int = 50, max_wait: float = 90.0):
         from google import genai
         self.client, self.model, self.batch, self.name = genai.Client(api_key=api_key), model, batch, model
+        self.max_wait = max_wait
+        self._cache: dict[tuple[str, str], list[float]] = {}  # (tarefa, texto) -> vetor: a mesma pergunta não é paga duas vezes
+
+    def _embed_batch(self, texts: list[str], task: str):
+        import re
+        import time
+
+        from google.genai import errors, types
+        for attempt in range(4):
+            try:
+                return self.client.models.embed_content(model=self.model, contents=texts,
+                                                        config=types.EmbedContentConfig(task_type=task))
+            except errors.APIError as e:
+                m = re.search(r"retry in ([\d.]+)s", str(e))
+                wait = float(m.group(1)) + 1 if m else 0.0
+                # só vale esperar o limite POR MINUTO; o limite diário não se resolve esperando
+                if getattr(e, "code", 0) != 429 or "PerDay" in str(e) or not wait or wait > self.max_wait or attempt == 3:
+                    raise
+                time.sleep(wait)
 
     def embed(self, texts: list[str], kind: str) -> np.ndarray:
-        from google.genai import types
         task = "RETRIEVAL_DOCUMENT" if kind == "documento" else "RETRIEVAL_QUERY"
-        vecs = []
-        for i in range(0, len(texts), self.batch):
-            r = self.client.models.embed_content(model=self.model, contents=texts[i:i + self.batch],
-                                                 config=types.EmbedContentConfig(task_type=task))
-            vecs += [e.values for e in r.embeddings]
-        m = np.array(vecs, dtype=np.float32)
+        missing = [t for t in dict.fromkeys(texts) if (task, t) not in self._cache]
+        for i in range(0, len(missing), self.batch):
+            part = missing[i:i + self.batch]
+            r = self._embed_batch(part, task)
+            for t, e in zip(part, r.embeddings):
+                self._cache[(task, t)] = e.values
+        m = np.array([self._cache[(task, t)] for t in texts], dtype=np.float32)
         return m / np.linalg.norm(m, axis=1, keepdims=True)
 
 
