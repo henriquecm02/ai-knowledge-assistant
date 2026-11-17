@@ -1,0 +1,1424 @@
+{
+  "data": "2026-11-16T23:44:44",
+  "trechos": 34,
+  "perguntas": 38,
+  "recuperacao": {
+    "bm25": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 0.643,
+        "recall@3": 0.786,
+        "recall@5": 0.857,
+        "mrr": 0.732,
+        "erros_top1": [
+          {
+            "id": 21,
+            "pergunta": "Comprei um almoço numa viagem de trabalho, até quanto a empresa cobre?",
+            "top1": "politica_reembolso.pdf · 1. O que pode ser reembolsado · p. 1"
+          },
+          {
+            "id": 22,
+            "pergunta": "Posso pegar Uber voltando tarde da noite de um evento da empresa?",
+            "top1": "faq_ti.md · Introdução"
+          },
+          {
+            "id": 24,
+            "pergunta": "Ganho algum dia livre no mês em que faço anos?",
+            "top1": "onboarding.md · Benefícios"
+          },
+          {
+            "id": 26,
+            "pergunta": "Meu notebook foi roubado no ônibus, o que eu faço?",
+            "top1": "seguranca_da_informacao.md · Dispositivos"
+          },
+          {
+            "id": 30,
+            "pergunta": "Quanto recebo de ajuda de custo para trabalhar de casa?",
+            "top1": null
+          }
+        ]
+      }
+    },
+    "denso": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      }
+    },
+    "hibrido": {
+      "direta": {
+        "n": 20,
+        "recall@1": 1.0,
+        "recall@3": 1.0,
+        "recall@5": 1.0,
+        "mrr": 1.0,
+        "erros_top1": []
+      },
+      "parafrase": {
+        "n": 14,
+        "recall@1": 0.786,
+        "recall@3": 0.929,
+        "recall@5": 0.929,
+        "mrr": 0.857,
+        "erros_top1": [
+          {
+            "id": 21,
+            "pergunta": "Comprei um almoço numa viagem de trabalho, até quanto a empresa cobre?",
+            "top1": "politica_reembolso.pdf · 1. O que pode ser reembolsado · p. 1"
+          },
+          {
+            "id": 22,
+            "pergunta": "Posso pegar Uber voltando tarde da noite de um evento da empresa?",
+            "top1": "codigo_de_conduta.md · Redes sociais"
+          },
+          {
+            "id": 26,
+            "pergunta": "Meu notebook foi roubado no ônibus, o que eu faço?",
+            "top1": "seguranca_da_informacao.md · Dispositivos"
+          }
+        ]
+      }
+    }
+  },
+  "embedder": "gemini-embedding-001",
+  "modelo": "gemini-3.5-flash-lite",
+  "respostas": {
+    "hibrido": {
+      "por_tipo": {
+        "direta": {
+          "n": 20,
+          "de": 20,
+          "acerto": 1.0
+        },
+        "parafrase": {
+          "n": 14,
+          "de": 14,
+          "acerto": 0.929
+        },
+        "sem_resposta": {
+          "n": 4,
+          "de": 4,
+          "acerto": 1.0
+        }
+      },
+      "linhas": [
+        {
+          "id": 1,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.67,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o limite de alimentação em viagem é de até R$ 120,00 por dia, sem bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 2,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.53,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o valor máximo é de até R$ 380,00 por diária. Esse limite se aplica especificamente a hospedagens realizadas em capitais.",
+          "avisos": []
+        },
+        {
+          "id": 3,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.97,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a empresa paga R$ 1,10 por km rodado com carro próprio, desde que o trajeto seja informado no mapa.",
+          "avisos": []
+        },
+        {
+          "id": 4,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.22,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o pedido de reembolso deve ser enviado pelo sistema Despesas em até 30 dias corridos após a despesa.",
+          "avisos": []
+        },
+        {
+          "id": 5,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 7.76,
+          "chamadas_llm": 1,
+          "resposta": "Sim, valores acima de R$ 2.000,00 precisam de aprovação da diretoria financeira, além da aprovação do gestor direto.",
+          "avisos": []
+        },
+        {
+          "id": 6,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 2.03,
+          "chamadas_llm": 1,
+          "resposta": "Não, multas de trânsito não são reembolsadas conforme a política da empresa.",
+          "avisos": []
+        },
+        {
+          "id": 7,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 9.61,
+          "chamadas_llm": 1,
+          "resposta": "Sim, as férias podem ser divididas em até três períodos, desde que um deles seja de no mínimo 14 dias corridos e os demais de no mínimo 5 dias corridos.",
+          "avisos": []
+        },
+        {
+          "id": 8,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 8.9,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a solicitação de férias deve ser feita no portal com antecedência mínima de 45 dias.",
+          "avisos": []
+        },
+        {
+          "id": 9,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.75,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a empresa oferece 20 dias corridos de licença-paternidade estendida.",
+          "avisos": []
+        },
+        {
+          "id": 10,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.77,
+          "chamadas_llm": 1,
+          "resposta": "O prazo para enviar atestado médico é em até 48 horas após o retorno. Atestados devem ser enviados pelo portal da empresa.",
+          "avisos": []
+        },
+        {
+          "id": 11,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.22,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o tamanho mínimo da senha é de 12 caracteres. Essa regra está definida nos padrões de segurança da informação.",
+          "avisos": []
+        },
+        {
+          "id": 12,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.88,
+          "chamadas_llm": 1,
+          "resposta": "Você deve comunicar em até 1 hora após a descoberta. A suspeita de incidente deve ser comunicada ao canal #seguranca ou ao e-mail seguranca@ateliehorizonte.invalid, sem tentar investigar sozinho ou apagar evidências.",
+          "avisos": []
+        },
+        {
+          "id": 13,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 19.19,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a VPN corporativa é obrigatória em redes Wi-Fi públicas.",
+          "avisos": []
+        },
+        {
+          "id": 14,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.77,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o período de experiência é de 90 dias, com conversas de acompanhamento aos 30, 60 e 85 dias com o gestor.",
+          "avisos": []
+        },
+        {
+          "id": 15,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 22.56,
+          "chamadas_llm": 1,
+          "resposta": "O vale-refeição é de R$ 45,00 por dia útil, sendo creditado a partir do primeiro mês completo.",
+          "avisos": []
+        },
+        {
+          "id": 16,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.46,
+          "chamadas_llm": 1,
+          "resposta": "Sim, os treinamentos obrigatórios até o fim do primeiro mês são: Segurança da Informação (2 horas), Código de Conduta (1 hora) e LGPD na prática (1 hora e 30 minutos). O certificado é emitido automaticamente na plataforma de cursos.",
+          "avisos": []
+        },
+        {
+          "id": 17,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.82,
+          "chamadas_llm": 1,
+          "resposta": "Sim, é permitido aceitar brindes de fornecedores de valor de até R$ 100,00. Presentes acima desse valor devem ser recusados com educação ou entregues ao Comitê de Ética caso não seja possível a recusa.",
+          "avisos": []
+        },
+        {
+          "id": 18,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 6.6,
+          "chamadas_llm": 1,
+          "resposta": "O Comitê de Ética responde ao denunciante em até 30 dias.",
+          "avisos": []
+        },
+        {
+          "id": 19,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 3.75,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o prazo de primeira resposta para chamado crítico é de 30 minutos.",
+          "avisos": []
+        },
+        {
+          "id": 20,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.84,
+          "chamadas_llm": 1,
+          "resposta": "Você pode abrir um chamado pelo portal de suporte ou pelo e-mail suporte@ateliehorizonte.invalid. Chamados críticos também podem ser abertos pelo telefone de plantão, das 7h às 23h.",
+          "avisos": []
+        },
+        {
+          "id": 21,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.74,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a empresa cobre despesas de alimentação em viagem até R$ 120,00 por dia, sem bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 22,
+          "tipo": "parafrase",
+          "fato_correto": false,
+          "cita_trecho_correto": false,
+          "correta": false,
+          "segundos": 0.86,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre o uso de Uber voltando tarde da noite de um evento não está nos documentos disponíveis. Sugerimos consultar a área responsável.",
+          "avisos": []
+        },
+        {
+          "id": 23,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.94,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você ainda consegue ser ressarcido. Cupom sem CNPJ é aceito para despesas de até R$ 50,00.",
+          "avisos": []
+        },
+        {
+          "id": 24,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 7.63,
+          "chamadas_llm": 1,
+          "resposta": "Sim, toda pessoa colaboradora tem direito a uma folga no mês do seu aniversário, que deve ser combinada com o gestor e não é cumulativa.",
+          "avisos": []
+        },
+        {
+          "id": 25,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.83,
+          "chamadas_llm": 1,
+          "resposta": "Sim, as horas a mais entram no banco de horas e devem ser compensadas em até 6 meses. Se houver saldo positivo não compensado nesse prazo, o valor é pago como hora extra com adicional de 50%.",
+          "avisos": []
+        },
+        {
+          "id": 26,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.62,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você deve comunicar a perda ao canal #seguranca ou ao e-mail seguranca@ateliehorizonte.invalid em até 1 hora após a descoberta. Não tente investigar sozinho nem apagar evidências.",
+          "avisos": []
+        },
+        {
+          "id": 27,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.03,
+          "chamadas_llm": 1,
+          "resposta": "Não. É proibido compartilhar senhas, inclusive com colegas da mesma área, devendo ser utilizado o cofre de senhas corporativo para credenciais de equipe.",
+          "avisos": []
+        },
+        {
+          "id": 28,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.01,
+          "chamadas_llm": 1,
+          "resposta": "Sim, dados de clientes só podem ser exportados para planilhas com aprovação do encarregado de dados (DPO).",
+          "avisos": []
+        },
+        {
+          "id": 29,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.88,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você é acompanhado por um padrinho ou madrinha de outra área, que acompanha os primeiros 90 dias.",
+          "avisos": []
+        },
+        {
+          "id": 30,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.76,
+          "chamadas_llm": 1,
+          "resposta": "O auxílio home office é de R$ 150,00 por mês. Ele é pago para quem trabalha remotamente pelo menos 3 dias por semana.",
+          "avisos": []
+        },
+        {
+          "id": 31,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.52,
+          "chamadas_llm": 1,
+          "resposta": "Sim. Quem tiver parente trabalhando em fornecedor, cliente ou concorrente deve declarar o vínculo no formulário de conflito de interesses em até 15 dias após a admissão ou após o surgimento da situação.",
+          "avisos": []
+        },
+        {
+          "id": 32,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.41,
+          "chamadas_llm": 1,
+          "resposta": "Sim, leva até 5 dias úteis. Programas fora da lista homologada passam por avaliação de segurança antes da instalação.",
+          "avisos": []
+        },
+        {
+          "id": 33,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.39,
+          "chamadas_llm": 1,
+          "resposta": "Se você não tiver acesso ao segundo fator, abra um chamado e confirme sua identidade por vídeo com o suporte.",
+          "avisos": []
+        },
+        {
+          "id": 34,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.81,
+          "chamadas_llm": 1,
+          "resposta": "Sim, é permitido ler o e-mail do trabalho no celular pessoal, desde que o aparelho possua bloqueio de tela e o aplicativo de gestão de dispositivos (MDM) instalado.",
+          "avisos": []
+        },
+        {
+          "id": 35,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.47,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre o valor do bônus anual por desempenho não está nos documentos disponíveis. Sugerimos verificar com o setor de Recursos Humanos.",
+          "avisos": []
+        },
+        {
+          "id": 36,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.13,
+          "chamadas_llm": 1,
+          "resposta": "Não. A informação sobre a oferta de auxílio creche não está nos documentos disponíveis.",
+          "avisos": []
+        },
+        {
+          "id": 37,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.26,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre o horário de funcionamento do refeitório não está nos documentos disponíveis. Sugerimos verificar com a área responsável pelos benefícios.",
+          "avisos": []
+        },
+        {
+          "id": 38,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 7.43,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre levar animais de estimação para o escritório não está nos documentos disponíveis. Sugerimos consultar a área responsável.",
+          "avisos": []
+        }
+      ],
+      "completo": true
+    },
+    "hibrido+rerank": {
+      "por_tipo": {
+        "direta": {
+          "n": 20,
+          "de": 20,
+          "acerto": 1.0
+        },
+        "parafrase": {
+          "n": 14,
+          "de": 14,
+          "acerto": 1.0
+        },
+        "sem_resposta": {
+          "n": 4,
+          "de": 4,
+          "acerto": 1.0
+        }
+      },
+      "linhas": [
+        {
+          "id": 1,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 2.04,
+          "chamadas_llm": 2,
+          "resposta": "O limite de alimentação em viagem é de até R$ 120,00 por dia, sem bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 2,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 6.79,
+          "chamadas_llm": 2,
+          "resposta": "Sim, o valor máximo da diária de hospedagem em capitais é de até R$ 380,00.",
+          "avisos": []
+        },
+        {
+          "id": 3,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 42.13,
+          "chamadas_llm": 2,
+          "resposta": "A empresa paga R$ 1,10 por km rodado com carro próprio, desde que o trajeto seja informado no mapa.",
+          "avisos": []
+        },
+        {
+          "id": 4,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.99,
+          "chamadas_llm": 2,
+          "resposta": "O prazo para enviar o pedido de reembolso é de até 30 dias corridos após a despesa, devendo ser enviado pelo sistema Despesas com a nota fiscal em nome da empresa.",
+          "avisos": []
+        },
+        {
+          "id": 5,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 6.14,
+          "chamadas_llm": 2,
+          "resposta": "Sim, valores acima de R$ 2.000,00 precisam de aprovação da diretoria financeira.",
+          "avisos": []
+        },
+        {
+          "id": 6,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 5.55,
+          "chamadas_llm": 2,
+          "resposta": "Não, multas de trânsito não são reembolsadas conforme a política da empresa.",
+          "avisos": []
+        },
+        {
+          "id": 7,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 7.65,
+          "chamadas_llm": 2,
+          "resposta": "Sim, as férias podem ser divididas em até três períodos, desde que um deles seja de no mínimo 14 dias corridos e os demais de no mínimo 5 dias corridos.",
+          "avisos": []
+        },
+        {
+          "id": 8,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 2.57,
+          "chamadas_llm": 2,
+          "resposta": "Sim, a solicitação deve ser feita com antecedência mínima de 45 dias. O pedido precisa ser realizado no portal, respeitando essa antecedência.",
+          "avisos": []
+        },
+        {
+          "id": 9,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.99,
+          "chamadas_llm": 2,
+          "resposta": "A empresa oferece 20 dias corridos de licença-paternidade estendida.",
+          "avisos": []
+        },
+        {
+          "id": 10,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.95,
+          "chamadas_llm": 2,
+          "resposta": "Sim, o prazo para enviar atestado médico é em até 48 horas após o retorno. O envio deve ser realizado pelo portal.",
+          "avisos": []
+        },
+        {
+          "id": 11,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 15.98,
+          "chamadas_llm": 2,
+          "resposta": "Sim, as senhas devem ter no mínimo 12 caracteres. Esta é a regra definida para a segurança do acesso.",
+          "avisos": []
+        },
+        {
+          "id": 12,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.88,
+          "chamadas_llm": 2,
+          "resposta": "Você deve comunicar um incidente de segurança em até 1 hora após a descoberta. Essa comunicação deve ser feita ao canal #seguranca ou ao e-mail seguranca@ateliehorizonte.invalid.",
+          "avisos": []
+        },
+        {
+          "id": 13,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 15.76,
+          "chamadas_llm": 2,
+          "resposta": "Sim, a VPN corporativa é obrigatória em redes Wi-Fi públicas. Além disso, reuniões com informações confidenciais não devem ser feitas em locais públicos.",
+          "avisos": []
+        },
+        {
+          "id": 14,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.93,
+          "chamadas_llm": 2,
+          "resposta": "O período de experiência dura 90 dias, havendo conversas de acompanhamento aos 30, 60 e 85 dias com o gestor.",
+          "avisos": []
+        },
+        {
+          "id": 15,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 2.28,
+          "chamadas_llm": 2,
+          "resposta": "O valor do vale-refeição é de R$ 45,00 por dia útil, sendo creditado a partir do primeiro mês completo.",
+          "avisos": []
+        },
+        {
+          "id": 16,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 119.25,
+          "chamadas_llm": 2,
+          "resposta": "Sim, até o fim do primeiro mês devem ser concluídos os treinamentos de Segurança da Informação, Código de Conduta e LGPD na prática.",
+          "avisos": []
+        },
+        {
+          "id": 17,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.92,
+          "chamadas_llm": 2,
+          "resposta": "Sim, é permitido aceitar brindes de fornecedores de valor de até R$ 100,00. Presentes acima desse valor devem ser recusados com educação ou entregues ao Comitê de Ética.",
+          "avisos": []
+        },
+        {
+          "id": 18,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 9.17,
+          "chamadas_llm": 2,
+          "resposta": "O Comitê responde ao denunciante em até 30 dias.",
+          "avisos": []
+        },
+        {
+          "id": 19,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.93,
+          "chamadas_llm": 2,
+          "resposta": "O prazo de primeira resposta para chamado crítico é de 30 minutos.",
+          "avisos": []
+        },
+        {
+          "id": 20,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 15.41,
+          "chamadas_llm": 2,
+          "resposta": "Você pode abrir um chamado pelo portal de suporte ou pelo e-mail suporte@ateliehorizonte.invalid. Chamados críticos também podem ser abertos pelo telefone de plantão, das 7h às 23h.",
+          "avisos": []
+        },
+        {
+          "id": 21,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 10.18,
+          "chamadas_llm": 2,
+          "resposta": "Sim, a empresa cobre a alimentação em viagem até R$ 120,00 por dia, desde que seja sem bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 22,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 9.42,
+          "chamadas_llm": 2,
+          "resposta": "Sim, o uso de táxi ou aplicativo é permitido entre 22h e 6h ou quando não houver transporte público em até 1 km.",
+          "avisos": []
+        },
+        {
+          "id": 23,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.85,
+          "chamadas_llm": 2,
+          "resposta": "Sim, você ainda consegue ser ressarcido. Cupom sem CNPJ é aceito para despesas de até R$ 50,00.",
+          "avisos": []
+        },
+        {
+          "id": 24,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 5.73,
+          "chamadas_llm": 2,
+          "resposta": "Sim, você tem direito a uma folga no mês do seu aniversário para ser combinada com o gestor. A folga não é cumulativa e, caso não seja usada no mês, será perdida.",
+          "avisos": []
+        },
+        {
+          "id": 25,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 2.48,
+          "chamadas_llm": 2,
+          "resposta": "Sim, as horas extras entram no banco de horas e devem ser compensadas em até 6 meses. O saldo positivo não compensado no prazo é pago como hora extra com adicional de 50%.",
+          "avisos": []
+        },
+        {
+          "id": 26,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 6.18,
+          "chamadas_llm": 2,
+          "resposta": "Sim, você deve comunicar o ocorrido ao canal #seguranca ou ao e-mail seguranca@ateliehorizonte.invalid. Isso deve ser feito em até 1 hora após a descoberta, sem tentar investigar sozinho ou apagar evidências.",
+          "avisos": []
+        },
+        {
+          "id": 27,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.99,
+          "chamadas_llm": 2,
+          "resposta": "Não. É proibido compartilhar senhas, inclusive com colegas da mesma área, devendo ser utilizado o cofre de senhas corporativo para credenciais de equipe.",
+          "avisos": []
+        },
+        {
+          "id": 28,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 38.34,
+          "chamadas_llm": 2,
+          "resposta": "Sim, você precisa de autorização do encarregado de dados (DPO) para exportar dados de clientes para planilhas.",
+          "avisos": []
+        },
+        {
+          "id": 29,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 23.68,
+          "chamadas_llm": 2,
+          "resposta": "Sim, você é acompanhado por um \"padrinho\" ou \"madrinha\" de outra área. Essa pessoa acompanha os seus primeiros 90 dias na empresa.",
+          "avisos": []
+        },
+        {
+          "id": 30,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.43,
+          "chamadas_llm": 2,
+          "resposta": "Você recebe R$ 150,00 por mês de auxílio home office, desde que trabalhe remotamente pelo menos 3 dias por semana.",
+          "avisos": []
+        },
+        {
+          "id": 31,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 2.93,
+          "chamadas_llm": 2,
+          "resposta": "Sim, você deve declarar o vínculo. O parente trabalhando em fornecedor exige o preenchimento do formulário de conflito de interesses em até 15 dias após a admissão ou após o surgimento da situação.",
+          "avisos": []
+        },
+        {
+          "id": 32,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.89,
+          "chamadas_llm": 2,
+          "resposta": "Leva até 5 dias úteis. Programas fora da lista homologada passam por avaliação de segurança.",
+          "avisos": []
+        },
+        {
+          "id": 33,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 11.35,
+          "chamadas_llm": 2,
+          "resposta": "Abra um chamado e confirme sua identidade por vídeo com o suporte. Isso deve ser feito caso você não tenha acesso ao segundo fator no autoatendimento.",
+          "avisos": []
+        },
+        {
+          "id": 34,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 3.66,
+          "chamadas_llm": 2,
+          "resposta": "Sim, é possível usar o celular pessoal para ler o e-mail da empresa, desde que o aparelho tenha bloqueio de tela e o aplicativo de gestão de dispositivos (MDM) instalado. O suporte pode apagar remotamente apenas os dados corporativos em caso de perda.",
+          "avisos": []
+        },
+        {
+          "id": 35,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.98,
+          "chamadas_llm": 1,
+          "resposta": "Não encontrei essa informação nos documentos disponíveis.",
+          "avisos": [
+            "nenhum trecho recuperado"
+          ]
+        },
+        {
+          "id": 36,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.91,
+          "chamadas_llm": 1,
+          "resposta": "Não encontrei essa informação nos documentos disponíveis.",
+          "avisos": [
+            "nenhum trecho recuperado"
+          ]
+        },
+        {
+          "id": 37,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.56,
+          "chamadas_llm": 1,
+          "resposta": "Não encontrei essa informação nos documentos disponíveis.",
+          "avisos": [
+            "nenhum trecho recuperado"
+          ]
+        },
+        {
+          "id": 38,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.38,
+          "chamadas_llm": 1,
+          "resposta": "Não encontrei essa informação nos documentos disponíveis.",
+          "avisos": [
+            "nenhum trecho recuperado"
+          ]
+        }
+      ],
+      "completo": true
+    },
+    "denso": {
+      "por_tipo": {
+        "direta": {
+          "n": 20,
+          "de": 20,
+          "acerto": 1.0
+        },
+        "parafrase": {
+          "n": 14,
+          "de": 14,
+          "acerto": 1.0
+        },
+        "sem_resposta": {
+          "n": 4,
+          "de": 4,
+          "acerto": 1.0
+        }
+      },
+      "linhas": [
+        {
+          "id": 1,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 3.81,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o limite de alimentação em viagem é de até R$ 120,00 por dia, sem bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 2,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.86,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o valor máximo da diária de hospedagem em capitais é de R$ 380,00 por diária. Esse limite é aplicado especificamente para hospedagens em capitais.",
+          "avisos": []
+        },
+        {
+          "id": 3,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.71,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a empresa paga R$ 1,10 por km rodado com carro próprio, sendo necessário que o trajeto seja informado no mapa.",
+          "avisos": []
+        },
+        {
+          "id": 4,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.29,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o pedido deve ser enviado em até 30 dias corridos após a despesa. O envio precisa ser feito através do sistema Despesas acompanhado de nota fiscal em nome da empresa.",
+          "avisos": []
+        },
+        {
+          "id": 5,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.83,
+          "chamadas_llm": 1,
+          "resposta": "Sim, valores acima de R$ 2.000,00 precisam de aprovação da diretoria financeira.",
+          "avisos": []
+        },
+        {
+          "id": 6,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.24,
+          "chamadas_llm": 1,
+          "resposta": "Não. Multas de trânsito não são reembolsadas.",
+          "avisos": []
+        },
+        {
+          "id": 7,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.83,
+          "chamadas_llm": 1,
+          "resposta": "Sim, as férias podem ser divididas em até três períodos, desde que um deles seja de no mínimo 14 dias corridos e os demais de no mínimo 5 dias corridos.",
+          "avisos": []
+        },
+        {
+          "id": 8,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.09,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a solicitação deve ser feita no portal com antecedência mínima de 45 dias.",
+          "avisos": []
+        },
+        {
+          "id": 9,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 5.98,
+          "chamadas_llm": 1,
+          "resposta": "A empresa oferece 20 dias corridos de licença-paternidade estendida.",
+          "avisos": []
+        },
+        {
+          "id": 10,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 6.23,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o prazo para enviar atestados médicos é em até 48 horas após o retorno, devendo ser realizados pelo portal.",
+          "avisos": []
+        },
+        {
+          "id": 11,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.88,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o tamanho mínimo da senha é de 12 caracteres, conforme as diretrizes de segurança da informação.",
+          "avisos": []
+        },
+        {
+          "id": 12,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.01,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você deve comunicar um incidente de segurança em até 1 hora após a descoberta. Essa comunicação deve ser feita ao canal #seguranca ou ao e-mail seguranca@ateliehorizonte.invalid.",
+          "avisos": []
+        },
+        {
+          "id": 13,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 5.7,
+          "chamadas_llm": 1,
+          "resposta": "Sim, em redes Wi-Fi públicas a VPN corporativa é obrigatória.",
+          "avisos": []
+        },
+        {
+          "id": 14,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.05,
+          "chamadas_llm": 1,
+          "resposta": "O período de experiência é de 90 dias, com conversas de acompanhamento aos 30, 60 e 85 dias com o gestor.",
+          "avisos": []
+        },
+        {
+          "id": 15,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.14,
+          "chamadas_llm": 1,
+          "resposta": "O vale-refeição é de R$ 45,00 por dia útil, sendo creditado a partir do primeiro mês completo.",
+          "avisos": []
+        },
+        {
+          "id": 16,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 28.46,
+          "chamadas_llm": 1,
+          "resposta": "Sim, até o fim do primeiro mês devem ser concluídos os treinamentos de Segurança da Informação (2 horas), Código de Conduta (1 hora) e LGPD na prática (1 hora e 30 minutos).",
+          "avisos": []
+        },
+        {
+          "id": 17,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.13,
+          "chamadas_llm": 1,
+          "resposta": "Sim, é permitido aceitar brindes de fornecedores de valor de até R$ 100,00. Presentes acima desse valor devem ser recusados com educação ou entregues ao Comitê de Ética.",
+          "avisos": []
+        },
+        {
+          "id": 18,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.77,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o Comitê de Ética responde ao denunciante em até 30 dias. Essa regra se aplica às denúncias feitas de forma anônima pelo Canal de Ética.",
+          "avisos": []
+        },
+        {
+          "id": 19,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.81,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o prazo de primeira resposta para chamado crítico é de 30 minutos.",
+          "avisos": []
+        },
+        {
+          "id": 20,
+          "tipo": "direta",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.86,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você pode abrir um chamado pelo portal de suporte ou pelo e-mail suporte@ateliehorizonte.invalid. Chamados críticos também podem ser abertos pelo telefone de plantão, das 7h às 23h.",
+          "avisos": []
+        },
+        {
+          "id": 21,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.88,
+          "chamadas_llm": 1,
+          "resposta": "Sim, a empresa cobre despesas de alimentação em viagem até R$ 120,00 por dia, sendo vedado o gasto com bebida alcoólica.",
+          "avisos": []
+        },
+        {
+          "id": 22,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 7.48,
+          "chamadas_llm": 1,
+          "resposta": "Sim, o uso de táxi ou aplicativo é permitido entre 22h e 6h ou quando não houver transporte público em até 1 km.",
+          "avisos": []
+        },
+        {
+          "id": 23,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 6.38,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você ainda consegue ser ressarcido. Cupom sem CNPJ é aceito para despesas de até R$ 50,00.",
+          "avisos": []
+        },
+        {
+          "id": 24,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.97,
+          "chamadas_llm": 1,
+          "resposta": "Sim, toda pessoa colaboradora tem direito a uma folga no mês do seu aniversário, a ser combinada com o gestor. A folga não é cumulativa e, caso não seja usada no mês, é perdida.",
+          "avisos": []
+        },
+        {
+          "id": 25,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.77,
+          "chamadas_llm": 1,
+          "resposta": "As horas extras entram no banco de horas e devem ser compensadas em até 6 meses. O saldo positivo não compensado nesse prazo é pago como hora extra com adicional de 50%.",
+          "avisos": []
+        },
+        {
+          "id": 26,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.13,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você deve comunicar a perda do notebook ao canal #seguranca ou ao e-mail seguranca@ateliehorizonte.invalid em até 1 hora após a descoberta. Não tente investigar sozinho nem apagar evidências.",
+          "avisos": []
+        },
+        {
+          "id": 27,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.15,
+          "chamadas_llm": 1,
+          "resposta": "Não. É proibido compartilhar senhas, inclusive com colegas da mesma área, devendo-se usar o cofre de senhas corporativo para credenciais de equipe.",
+          "avisos": []
+        },
+        {
+          "id": 28,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.93,
+          "chamadas_llm": 1,
+          "resposta": "Sim, é necessário ter aprovação do encarregado de dados (DPO) para exportar dados de clientes para planilhas.",
+          "avisos": []
+        },
+        {
+          "id": 29,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.89,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você é acompanhado por um padrinho ou madrinha de outra área. Essa pessoa acompanha os primeiros 90 dias após a sua entrada.",
+          "avisos": []
+        },
+        {
+          "id": 30,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 31.32,
+          "chamadas_llm": 1,
+          "resposta": "O auxílio home office é de R$ 150,00 por mês. Ele é pago para quem trabalha remotamente pelo menos 3 dias por semana.",
+          "avisos": []
+        },
+        {
+          "id": 31,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 0.84,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você deve declarar o vínculo no formulário de conflito de interesses em até 15 dias após a admissão ou após o surgimento da situação.",
+          "avisos": []
+        },
+        {
+          "id": 32,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 50.41,
+          "chamadas_llm": 1,
+          "resposta": "Sim, leva até 5 dias úteis. Programas fora da lista homologada passam por avaliação de segurança com esse prazo.",
+          "avisos": []
+        },
+        {
+          "id": 33,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 1.5,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você deve abrir um chamado e confirmar sua identidade por vídeo com o suporte, caso não tenha acesso ao segundo fator.",
+          "avisos": []
+        },
+        {
+          "id": 34,
+          "tipo": "parafrase",
+          "fato_correto": true,
+          "cita_trecho_correto": true,
+          "correta": true,
+          "segundos": 4.03,
+          "chamadas_llm": 1,
+          "resposta": "Sim, você pode ler o e-mail do trabalho no seu celular pessoal, desde que o aparelho tenha bloqueio de tela e o aplicativo de gestão de dispositivos (MDM) instalado. O suporte pode apagar remotamente apenas os dados corporativos em caso de perda.",
+          "avisos": []
+        },
+        {
+          "id": 35,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.26,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre o valor do bônus anual por desempenho não está nos documentos disponíveis. Sugerimos entrar em contato com o departamento de Recursos Humanos.",
+          "avisos": []
+        },
+        {
+          "id": 36,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 23.72,
+          "chamadas_llm": 1,
+          "resposta": "Não. A informação sobre auxílio creche não está nos documentos disponíveis, sugerimos entrar em contato com o departamento de Recursos Humanos.",
+          "avisos": []
+        },
+        {
+          "id": 37,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.51,
+          "chamadas_llm": 1,
+          "resposta": "A informação não está nos documentos disponíveis, sugerindo a área responsável.",
+          "avisos": []
+        },
+        {
+          "id": 38,
+          "tipo": "sem_resposta",
+          "absteve": true,
+          "correta": true,
+          "segundos": 1.04,
+          "chamadas_llm": 1,
+          "resposta": "A informação sobre levar o cachorro para o escritório não está nos documentos disponíveis.",
+          "avisos": []
+        }
+      ],
+      "completo": true
+    }
+  },
+  "amostra_respostas": 38
+}

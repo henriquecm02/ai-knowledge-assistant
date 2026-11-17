@@ -5,6 +5,7 @@
   python eval/run_eval.py --embeddings    # só recuperação densa/híbrida (usa embeddings, sem geração)
   python eval/run_eval.py --llm --amostra # respostas só numa amostra fixa (poupa a cota gratuita)
   python eval/run_eval.py --llm --rerank  # 38 perguntas, com e sem reordenação; RETOMÁVEL (veja abaixo)
+  python eval/run_eval.py --llm --denso   # + respostas com a busca densa (o cache pula o que já foi medido)
 
 Retomável: cada resposta é guardada em eval/resultados/respostas_<modelo>.json. Ao esgotar a cota diária o script
 salva o que fez e para; rodar de novo no dia seguinte continua de onde parou, sempre com o MESMO modelo.
@@ -106,6 +107,7 @@ def main() -> None:
     ap.add_argument("--embeddings", action="store_true", help="só recuperação com embeddings, sem gerar respostas")
     ap.add_argument("--amostra", action="store_true", help="respostas apenas na amostra fixa de 14 perguntas")
     ap.add_argument("--rerank", action="store_true", help="também avalia híbrido+reordenação (dobra as chamadas)")
+    ap.add_argument("--denso", action="store_true", help="também avalia as respostas com a busca densa (sem BM25)")
     args = ap.parse_args()
     chunks = load_corpus(ROOT / "corpus")
     report: dict = {"data": datetime.now().isoformat(timespec="seconds"), "trechos": len(chunks),
@@ -133,10 +135,11 @@ def main() -> None:
 
             def save():
                 cache_file.write_text(json.dumps(store, ensure_ascii=False, indent=2), encoding="utf-8")
-            modos = [("hibrido", False)] + ([("hibrido+rerank", True)] if args.rerank else [])
+            modos = [("hibrido", "hibrido", False)] + ([("hibrido+rerank", "hibrido", True)] if args.rerank else []) \
+                + ([("denso", "denso", False)] if args.denso else [])
             report["respostas"] = {}
-            for nome, rr in modos:
-                report["respostas"][nome] = eval_answers(Assistant(index, llm, rerank=rr), qs,
+            for nome, modo, rr in modos:
+                report["respostas"][nome] = eval_answers(Assistant(index, llm, mode=modo, rerank=rr), qs,
                                                          store.setdefault(nome, {}), save)
             report["amostra_respostas"] = len(qs) if qs else len(QUESTIONS)
 

@@ -68,29 +68,32 @@ flowchart LR
 
 ### Respostas (Gemini real, 38 perguntas)
 
-`python eval/run_eval.py --llm --rerank`, modelo `gemini-3.5-flash-lite`, 16/11/2026. Cada pergunta conta como correta se a resposta **contém o fato esperado e cita o trecho certo** (ou, nas sem resposta, se o assistente **se abstém**). Respostas completas em [`eval/resultados/respostas_gemini-3.5-flash-lite.json`](eval/resultados/).
+`python eval/run_eval.py --llm --rerank --denso`, modelo `gemini-3.5-flash-lite`, 16/11/2026. Cada pergunta conta como correta se a resposta **contém o fato esperado e cita o trecho certo** (ou, nas sem resposta, se o assistente **se abstém**). Respostas completas em [`eval/resultados/respostas_gemini-3.5-flash-lite.json`](eval/resultados/).
 
-| Tipo | Perguntas | Híbrido | Híbrido + reordenação |
+| Tipo | Perguntas | Híbrido | Híbrido + reordenação | Denso |
+|---|---|---|---|---|
+| Diretas | 20 | 20/20 | 20/20 | 20/20 |
+| Paráfrases | 14 | 13/14 | **14/14** | **14/14** |
+| Sem resposta (deve se abster) | 4 | 4/4 | 4/4 | 4/4 |
+| **Total** | **38** | **37/38** | **38/38** | **38/38** |
+
+| Custo medido | Híbrido | Híbrido + reordenação | Denso |
 |---|---|---|---|
-| Diretas | 20 | 20/20 | 20/20 |
-| Paráfrases | 14 | 13/14 | **14/14** |
-| Sem resposta (deve se abster) | 4 | 4/4 | 4/4 |
-| **Total** | **38** | **37/38** | **38/38** |
+| Chamadas ao modelo (38 perguntas) | 38 | 72 (média de 1,9 por pergunta) | 38 |
+| Tempo por resposta, mediana | 1,4 s | 4,0 s | 1,2 s |
+| Tempo por resposta, p90 | 8,9 s | 23,7 s | 23,7 s |
 
-| Custo medido | Híbrido | Híbrido + reordenação |
-|---|---|---|
-| Chamadas ao modelo (38 perguntas) | 38 | 72 (média de 1,9 por pergunta) |
-| Tempo por resposta, mediana · p90 | 1,4 s · 8,9 s | 4,0 s · 23,7 s |
+O p90 do denso é igual ao do reranker por causa de picos de latência da API em poucas perguntas, não por trabalho extra (o denso faz 1 chamada por pergunta); com 38 amostras, o p90 é só 4 perguntas lentas e não diz nada sobre o modo.
 
-**O único erro do híbrido** é a pergunta 22 ("posso pegar Uber voltando tarde da noite de um evento?"). É falha de **recuperação**, não de geração: o BM25 puxou o trecho errado ("Redes sociais") para o primeiro lugar, o assistente não achou o limite de 22h e respondeu que a informação não está nos documentos. Falhou do jeito seguro, sem inventar. A reordenação por LLM corrigiu esse caso e foi o único que mudou entre os dois modos.
+**O único erro do híbrido** é a pergunta 22 ("posso pegar Uber voltando tarde da noite de um evento?"). É falha de **recuperação**, não de geração: o BM25 puxou o trecho errado ("Redes sociais") para o primeiro lugar, o assistente não achou o limite de 22h e respondeu que a informação não está nos documentos. Falhou do jeito seguro, sem inventar. A reordenação por LLM e a busca densa corrigiram esse caso, e foi o único que mudou entre os modos.
 
-**Nas 4 perguntas sem resposta**, os dois modos se abstiveram, e com a reordenação o assistente chegou a recusar sem gerar resposta ("nenhum trecho recuperado"), o que também poupa uma chamada.
+**Nas 4 perguntas sem resposta**, os três modos se abstiveram. Há uma diferença de mecanismo: com a reordenação, o assistente chegou a recusar sem gerar resposta ("nenhum trecho recuperado"), porque o reranker descarta trechos irrelevantes. No modo denso a busca **sempre devolve trechos** e a abstenção depende inteiramente do modelo, que recusou as 4 (nenhuma resposta inventada). Isso vale para este modelo e estas perguntas; não é uma garantia do modo.
 
 **Leitura honesta do resultado:**
 
-- A reordenação **acerta 1 pergunta a mais (de 38) ao custo de quase dobrar as chamadas e triplicar a latência mediana**. Com uma diferença de uma pergunta, não dá para afirmar que compensa; o dado diz que ela corrige falhas de recuperação do BM25 e que isso não é de graça.
-- Como o **denso sozinho** já acerta 14/14 das paráfrases na recuperação, é plausível que um modo denso resolvesse o caso sem o custo do reranker, mas **não medi as respostas no modo denso**. Está no roadmap.
-- 38 perguntas escritas por mim sobre uma base fictícia de 34 trechos, um modelo, uma rodada, saída não determinística. Mostra o fluxo completo funcionando e onde ele falha; não é uma medida de acurácia em produção.
+- Nesta base, o **denso iguala o melhor resultado (38/38) pelo custo do híbrido** (38 chamadas, sem a chamada extra de reordenação). É plausível que seja o melhor modo padrão aqui, e a recuperação medida aponta na mesma direção (R@1 de 1,00 contra 0,79 do híbrido nas paráfrases). **Não mudei o modo padrão do assistente** por causa disso.
+- O teste está **saturado**: três modos entre 37 e 38 acertos em 38 não se distinguem, uma pergunta é a diferença toda, e o híbrido e o reranker foram medidos antes do denso (saída não determinística). Separar os modos de verdade exige uma base maior e perguntas mais difíceis.
+- 38 perguntas escritas por mim sobre uma base fictícia de 34 trechos, um modelo, uma rodada. Mostra o fluxo completo funcionando e onde ele falha; não é uma medida de acurácia em produção.
 
 ## Status da validação
 
@@ -101,8 +104,8 @@ flowchart LR
 | Garantias de citação e abstenção | ✅ testado com LLM roteirizado (11 testes) |
 | Modo busca na interface (sem chave) | ✅ executado |
 | Embeddings, busca densa e híbrida com o **Gemini real** | ✅ medido nas 38 perguntas |
-| Respostas do Gemini, com e sem reordenação | ✅ 38 perguntas: híbrido 37/38, com reordenação 38/38; veja acima |
-| Respostas no modo denso e comparação entre modelos | ⏳ **pendente** |
+| Respostas do Gemini (híbrido, com reordenação e denso) | ✅ 38 perguntas: híbrido 37/38, com reordenação 38/38, denso 38/38; veja acima |
+| Comparação entre modelos | ⏳ **pendente** |
 
 ## Como rodar
 
@@ -125,8 +128,8 @@ Para usar com os seus documentos, envie os arquivos pela barra lateral da interf
 
 ## Roadmap
 
-- [ ] Medir as respostas no modo denso e comparar modelos
-- [ ] Reavaliar denso × híbrido × reordenação numa base maior, antes de decidir o modo padrão
+- [ ] Comparar modelos
+- [ ] Reavaliar denso × híbrido × reordenação numa base maior e mais difícil (a atual está saturada) e então decidir o modo padrão; hoje o denso empata com o melhor pelo menor custo
 - [ ] Comparação entre documentos ("o que mudou da versão 3.1 para a 3.2?")
 - [ ] Persistir índice e embeddings (SQLite) para bases maiores
 - [ ] Feedback 👍/👎 na interface para alimentar o conjunto de avaliação
